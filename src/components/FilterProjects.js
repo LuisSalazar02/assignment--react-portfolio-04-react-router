@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { projectData } from '../data/datasource'
 
+import Project from './Project.js'
+
 /*  Advice:
    (1) Create the component's JSX by using .map() on `projectData`
 
@@ -42,17 +44,8 @@ class FilterProjects extends Component {
       return false
     })
     .map( p => {
-      let projectType
-
-      if(p.solo){
-        projectType = 'solo'
-      } else {
-        projectType = 'team'
-      }
-      return <div className={`project project--${projectType}`}>
-        <span className="project__title">{p.projectName}</span>
-      </div>
-
+      console.log(p);
+      return <Project projectName={p.projectName} solo={p.solo}/>
     })
   }
 
@@ -63,13 +56,13 @@ class FilterProjects extends Component {
   }
 
   render() {
-    let allClassName = ''
-    let soloClassName = ''
-    let teamClassName = ''
+    let allRenderedClassVal = ''
+    let soloRenderedClassVal = ''
+    let teamRenderedClassVal = ''
 
-    if(this.state.tabSelected === 'all') allClassName = 'project-type--selected'
-    if(this.state.tabSelected === 'solo') soloClassName = 'project-type--selected'
-    if(this.state.tabSelected === 'team') teamClassName = 'project-type--selected'
+    if(this.state.tabSelected === 'all') allRenderedClassVal = 'project-type--selected'
+    if(this.state.tabSelected === 'solo') soloRenderedClassVal = 'project-type--selected'
+    if(this.state.tabSelected === 'team') teamRenderedClassVal = 'project-type--selected'
 
 
     return (
@@ -79,19 +72,19 @@ class FilterProjects extends Component {
           <div className="project-types-list">
             <span onClick={ () => this._handleClick('all')  }
               data-ptype="all"
-              className={`project-type project-type--all ${allClassName}`}>
+              className={`project-type project-type--all ${allRenderedClassVal}`}>
               All
             </span>
 
             <span onClick={ () => this._handleClick('solo')  }
               data-ptype="solo"
-              className={`project-type project-type--solo ${soloClassName}`}>
+              className={`project-type project-type--solo ${soloRenderedClassVal}`}>
               <i className="ion-person"></i>Solo
             </span>
 
             <span onClick={ () => this._handleClick('team') }
               data-ptype="team"
-              className={`project-type project-type--team ${teamClassName}`}>
+              className={`project-type project-type--team ${teamRenderedClassVal}`}>
               <i className="ion-person-stalker"></i>Team
             </span>
           </div>
