@@ -1509,6 +1509,9 @@ nav {
     margin: 6px;
     color: #fff;
     text-decoration: none; }
+  nav .navitem--selected{
+    background-color: #E7AAA5; 
+  }
   @media screen and (min-width: 650px) {
     nav {
       left: initial;
